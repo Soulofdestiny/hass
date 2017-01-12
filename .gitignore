@@ -12,4 +12,6 @@ www
 *.crt
 *.key
 *.conf
-!/.gitignore
+.*
+!.gitignore
+
