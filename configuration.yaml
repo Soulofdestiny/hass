@@ -21,13 +21,13 @@ sensor: !include sensors.yaml
 group: !include groups.yaml
 
 # device_tracker #
-device_tracker: !include device_tracker/nmap.yaml
+##device_tracker: !include device_tracker/nmap.yaml
 
 
 ### frontend ###
 
 # Show links to resources in log and frontend
-introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -70,13 +70,38 @@ ifttt:
 
 ### Basic automation section
 
+switch:
+  - platform: wake_on_lan
+    mac_address: !secret mac_desktop
+    name: "wol"
+    host: !secret ip_desktop
+  - platform: command_line
+    switches:
+      pc:
+        command_off: "net rpc shutdown -I 192.168.2.100 -U HA%HA_shutdown"
+  - platform: template
+    switches:
+      copy:
+        value_template: >
+         {% if is_state("switch.wol", "on") %}
+           on
+         {% else %}
+          off
+         {% endif %}
 
-# Example configuration.yaml Automation entry
-automation:
-  alias: Startup Notification
-  trigger:
-    platform: event
-    event_type: homeassistant_start
-  action:
-    service: ifttt.trigger
-    data: {"event":"Test_Trigger_HA", "value1":"Welcome Matthias!"}
+        turn_on:
+          service: switch.turn_on
+          entity_id: switch.wol
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.pc
+
+## Example configuration.yaml Automation entry
+#automation:
+#  alias: Startup Notification
+#  trigger:
+#    platform: event
+#    event_type: homeassistant_start
+#  action:
+#    service: ifttt.trigger
+#    data: {"event":"Test_Trigger_HA", "value1":"Welcome Matthias!"}

@@ -17,3 +17,10 @@ sensor.amazon_dot:
   icon: mdi:amazon
 device_tracker.amazon_dot:
   hidden: true
+switch.copy:
+  icon: mdi:monitor
+  friendly_name: Desktop
+switch.pc:
+  hidden: true
+switch.wol:
+  hidden: true
