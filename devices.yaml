@@ -1,0 +1,7 @@
+### devices ###
+
+- platform: template
+  sensors:
+    amazon_dot:
+      friendly_name: 'Amazon Dot'
+      value_template: "{{ 'Online' if is_state('device_tracker.amazon_dot', 'home') else 'Offline' }}"
