@@ -1,0 +1,20 @@
+### sensors ###
+- platform: speedtest
+  hour:
+    - 8
+    - 12
+    - 16
+    - 20
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+# Weather Prediction
+- platform: yr
+  monitored_conditions:
+  - symbol
+  - temperature
+  - humidity
+  - windSpeed
+

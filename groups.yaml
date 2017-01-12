@@ -1,0 +1,13 @@
+### groups ###
+
+Network:
+  - sensor.speedtest_ping
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
+
+Outside:
+  - sensor.sun
+  - sensor.yr_symbol
+  - sensor.yr_temperature
+  - sensor.yr_humidity
+  - sensor.yr_windSpeed
