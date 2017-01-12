@@ -1,0 +1,78 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: !secret name
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: !secret unit_system
+  time_zone: !secret time_zone
+  customize: !include customize.yaml
+
+### Include ###
+
+# sensors #
+sensor: !include sensors.yaml
+
+# groups #
+group: !include groups.yaml
+
+# device_tracker #
+device_tracker: !include device_tracker/nmap.yaml
+
+
+### frontend ###
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+http:
+  api_password: !secret http_password
+#  ssl_certificate: /etc/letsencrypt/live/phelius.duckdns.org/fullchain.pem
+#  ssl_key: /etc/letsencrypt/live/phelius.duckdns.org/privkey.pem
+
+# Checks for available updates
+updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+
+sun:
+
+## google calendar
+#google:
+#  client_id: 876504177465-blivkg7en2uapubdvqh8edssdfjnsh4v.apps.googleusercontent.com
+#  client_secret: qpr1-yos7zqjVsZwlVH-gyCa
+
+# Text to speech
+tts:
+  platform: google
+
+# IFTTT support
+ifttt:
+  key: lAQ3tlyJkcLuXrKUBIUjNczSaCnpMNx1mUH7D7hmgcN
+
+### Basic automation section
+
+
+# Example configuration.yaml Automation entry
+automation:
+  alias: Startup Notification
+  trigger:
+    platform: event
+    event_type: homeassistant_start
+  action:
+    service: ifttt.trigger
+    data: {"event":"Test_Trigger_HA", "value1":"Welcome Matthias!"}
