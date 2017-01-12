@@ -8,6 +8,10 @@ homeassistant:
   time_zone: !secret time_zone
   customize: !include customize.yaml
 
+recorder:
+  db_url: !secret db_url
+
+
 ### Include ###
 
 # sensors #
